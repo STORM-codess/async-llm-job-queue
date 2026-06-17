@@ -1,4 +1,4 @@
-# LLM Batch Processor
+# Async-llm-job-queue
 
 An async job-queue service for running **bulk LLM workloads** without blocking
 HTTP requests. Submit a batch of texts, get a job ID back instantly, and let a
@@ -8,6 +8,8 @@ submission.
 
 Built with **FastAPI + arq + Redis + Groq**, with job history persisted to SQL
 (SQLite locally; drop in a Postgres URL for production).
+
+![Demo](demo.gif)
 
 ---
 
@@ -55,6 +57,14 @@ Client --POST /batch/classify--> FastAPI --enqueue--> Redis (arq queue)
   safe; a replay returns the original job ID instead of re-running the batch.
 - **Honest metrics** — `/metrics` sums real persisted token usage and outcomes.
   No fabricated numbers; if `GROQ_API_KEY` is missing, jobs fail loudly.
+
+### Verified under real load
+
+Running a 50-item batch against live Groq rate limits — the worker retries
+rate-limited items with backoff and isolates the ones that can't complete,
+without blocking the rest of the batch:
+
+![Metrics from a 50-item batch run](assets/metrics-50.png)
 
 ## Run locally
 
