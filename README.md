@@ -64,7 +64,7 @@ Running a 50-item batch against live Groq rate limits — the worker retries
 rate-limited items with backoff and isolates the ones that can't complete,
 without blocking the rest of the batch:
 
-![Metrics from a 50-item batch run](assets/metrics-50.png)
+![Metrics from a 50-item batch run](Screenshot 2026-06-17 170451)(Screenshot 2026-06-17 170502)
 
 ## Run locally
 
