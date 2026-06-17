@@ -1,0 +1,15 @@
+.env
+.venv/
+.idea/
+.pytest_cache/
+
+
+.bash_history
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+
+database/jobs.db
+database/jobs.db-journal
